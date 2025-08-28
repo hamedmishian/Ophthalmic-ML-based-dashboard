@@ -2,41 +2,8 @@
 
 import React, { useState } from "react";
 
-interface PatientData {
-  patientId: string;
-  birthYear: number;
-  gender: "male" | "female";
-  hypertension: boolean;
-  diabetes: boolean;
-  strokeHistory: boolean;
-  heartAttack: boolean;
-  bloodThinners: boolean;
-  initialVisualAcuity: number;
-  initialThickness: number;
-}
-
-interface Prediction {
-  success: boolean;
-  prediction: {
-    recommendation: string;
-    predictedChange: "improve" | "decline" | "stable";
-    confidence: number;
-    nextFollowUp: string;
-    currentVisualAcuity: number;
-    predictedVisualAcuity: number;
-  };
-  charts?: {
-    main_chart?: string;
-  };
-  statistics: {
-    initialVisualAcuity: number;
-    finalVisualAcuity: number;
-    totalInjections: number;
-  };
-}
-
 export default function App() {
-  const [patientData, setPatientData] = useState<PatientData>({
+  const [patientData, setPatientData] = useState({
     patientId: "",
     birthYear: 1948,
     gender: "male",
@@ -48,19 +15,15 @@ export default function App() {
     initialVisualAcuity: 0.3,
     initialThickness: 420
   });
-  const [prediction, setPrediction] = useState<Prediction | null>(null);
+  const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
-  interface InputChangeEvent
-    extends React.ChangeEvent<HTMLInputElement | HTMLSelectElement> {}
-
-  const handleInputChange = (e: InputChangeEvent) => {
-    const target = e.target as HTMLInputElement | HTMLSelectElement;
-    const { name, value, type } = target;
+  const handleInputChange = e => {
+    const { name, value, type, checked } = e.target;
     setPatientData(prev => ({
       ...prev,
-      [name]: type === "checkbox" ? (target as HTMLInputElement).checked : value
+      [name]: type === "checkbox" ? checked : value
     }));
   };
 
@@ -191,18 +154,7 @@ export default function App() {
                   <input
                     type="checkbox"
                     name={key}
-                    checked={
-                      patientData[
-                        key as keyof Pick<
-                          PatientData,
-                          | "hypertension"
-                          | "diabetes"
-                          | "strokeHistory"
-                          | "heartAttack"
-                          | "bloodThinners"
-                        >
-                      ]
-                    }
+                    checked={patientData[key]}
                     onChange={handleInputChange}
                     className="h-4 w-4 text-blue-500 rounded border-gray-300"
                   />

@@ -1,0 +1,71 @@
+# -------------------------
+# Python Bytecode
+# -------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# -------------------------
+# Virtual Environments
+# -------------------------
+venv/
+env/
+.venv/
+
+# -------------------------
+# Distribution / Packaging
+# -------------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+*.whl
+
+# -------------------------
+# IDE / Editor files
+# -------------------------
+# VS Code
+.vscode/
+# PyCharm
+.idea/
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# -------------------------
+# OS Files
+# -------------------------
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# -------------------------
+# Logs and Temporary Files
+# -------------------------
+*.log
+*.tmp
+*.bak
+*.swp
+
+# -------------------------
+# Environment Variables / Secrets
+# -------------------------
+.env
+.env.*
+
+# -------------------------
+# Jupyter Notebook
+# -------------------------
+.ipynb_checkpoints/
+
+# -------------------------
+# Misc / Optional
+# -------------------------
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+pytest_cache/
